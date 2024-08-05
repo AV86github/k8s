@@ -1,0 +1,6 @@
+nfs:
+  server: 192.168.31.40
+  path: /volume1/k8s
+
+storageClass:
+  defaultClass: true
