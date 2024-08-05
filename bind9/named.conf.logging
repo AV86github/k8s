@@ -1,0 +1,51 @@
+logging {
+
+        channel update_debug {
+                file "/var/named/data/update_debug.log" versions 3 size 100k;
+                severity debug;
+                print-severity  yes;
+                print-time      yes;
+        };
+        channel security_info {
+                file "/var/named/data/security_info.log" versions 1 size 100k;
+                severity info;
+                print-severity  yes;
+                print-time      yes;
+        };
+        channel bind_log {
+                file "/var/named/data/bind.log" versions 4 size 4m;
+                severity info;
+                print-category  yes;
+                print-severity  yes;
+                print-time      yes;
+        };
+        channel query {
+                file "/var/named/data/query.log" versions 4 size 4m;
+                print-time yes;
+                print-severity no;
+                print-category no;
+        };
+
+        category default {
+                bind_log;
+        };
+        category lame-servers {
+                null;
+        };
+        category update {
+                update_debug;
+        };
+        category update-security {
+                update_debug;
+        };
+        category security {
+                security_info;
+        };
+        category resolver {
+                null;
+        };
+        category queries {
+                query;
+        };
+
+};

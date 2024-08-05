@@ -1,0 +1,37 @@
+view "lan_zone" {
+
+        match-clients {
+                loc;
+                lan-pool;
+        };
+        allow-query {
+                loc;
+                lan-pool;
+        };
+        allow-transfer {
+                trusted-dns;
+        };
+        allow-update {
+                none;
+        };
+        recursion yes;
+        forwarders {
+                172.16.201.2;
+        };
+
+        zone "." IN {
+                type hint;
+                file "/var/named/named.ca";
+        };
+
+        zone "avl.local" {
+                type master;
+                file "/var/named/db.avl.local";
+        };
+
+        zone "201.16.172.in-addr.arpa" {
+                type master;
+                file "/var/named/db.avl.local.inverse";
+        };
+
+};

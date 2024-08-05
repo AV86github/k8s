@@ -1,0 +1,39 @@
+options {
+        directory       "/var/named";
+        dnssec-validation no;
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+
+        managed-keys-directory "/var/named/dynamic";
+        geoip-directory "/usr/share/GeoIP";
+
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";
+
+        include "/etc/crypto-policies/back-ends/bind.config";
+
+        auth-nxdomain no;
+        version none;
+        port 53;
+        max-cache-size 241172480;
+
+        listen-on port 53 {
+                127.0.0.1;
+                172.16.201.128;
+        };
+        listen-on-v6 {
+                none;
+        };
+        allow-transfer {
+                none;
+        };
+        allow-query {
+                any;
+        };
+        allow-recursion {
+                loc;
+                lan-pool;
+        };
+
+};

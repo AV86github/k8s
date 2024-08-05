@@ -1,0 +1,16 @@
+;
+; Zones invert view
+;
+$TTL 3600
+@               IN      SOA     avl.local.  mail.avl.local. (
+        2019101401      ; Serial
+                1d      ; Refresh
+                1h      ; Retry
+                1w      ; Expire
+                2h      ; Negative Cache TTL
+)
+
+@               IN      NS      ns.avl.local.
+128               IN      PTR     ns.avl.local.
+
+128               IN      PTR     rocky.avl.local.

@@ -1,0 +1,18 @@
+;
+; Zone Front view
+;
+$TTL 3600
+@               IN      SOA     avl.local.        mail.avl.local. (
+        2024080216      ; Serial
+                1d      ; Refresh
+                1h      ; Retry
+                1w      ; Expire
+                2h      ; Negative Cache TTL
+)
+
+www             IN      CNAME   avl.local.
+
+@               IN      NS      ns.avl.local.
+ns              IN      A       172.16.201.128
+
+rocky           IN      A       172.16.201.128
