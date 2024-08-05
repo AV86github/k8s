@@ -1,0 +1,10 @@
+main:
+git
+vim
+bash-complition
+tar
+kubectl
+helm
+krew
+kubens
+kbectx
