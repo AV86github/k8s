@@ -11,7 +11,7 @@ spec:
   ## Fix to new versions of ingress controllers
   ingressClassName: "nginx"
   rules:
-    - host: "minio.avl.local"
+    - host: "minio.avl.home"
       http:
         paths:
           - path: /
