@@ -1,1 +1,4 @@
-helm install metallb metallb/metallb
+helm install metallb metallb/metallb -n metallb --create-namespace
+
+helm show values metallb/metallb
+apply pool, advertise for L2
