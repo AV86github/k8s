@@ -1,0 +1,149 @@
+global:
+  defaultStorageClass: 'nfs-client'
+
+ipFamily:
+  ipv6:
+    enabled: false
+
+adminPassword: password01
+
+logLevel: debug
+
+exposureType: ingress
+
+# service:
+#   type: ClusterIP
+#   tls:
+#     enabled: false
+
+ingress:
+  core:
+    ingressClassName: nginx
+    hostname: harbor.avl.home
+
+externalURL: http://harbor.avl.home
+
+persistence:
+  enabled: true
+  persistentVolumeClaim:
+    registry:
+      existingClaim: ''
+      storageClass: 'nfs-client'
+      subPath: ''
+      accessMode: ReadWriteOnce
+      size: 5Gi
+    jobservice:
+      existingClaim: ''
+      storageClass: 'nfs-client'
+      subPath: ''
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    chartmuseum:
+      existingClaim: ''
+      storageClass: 'nfs-client'
+      subPath: ''
+      accessMode: ReadWriteOnce
+      size: 5Gi
+    trivy:
+      storageClass: 'nfs-client'
+      accessMode: ReadWriteOnce
+      size: 5Gi
+
+
+portal:
+  resources:
+    limits: {}
+    ##   cpu: 500m
+    ##   memory: 1Gi
+    requests: {}
+    ##   cpu: 250m
+    ##   memory: 256Mi
+core:
+  replicas: 1
+  resources:
+    limits: {}
+    #  cpu: 500m
+    #  memory: 1Gi
+    requests: {}
+    #  cpu: 250m
+    #  memory: 256Mi
+jobservice:
+  maxJobWorkers: 10
+  resources:
+    limits: {}
+    ##   cpu: 500m
+    ##   memory: 1Gi
+    requests: {}
+    ##   cpu: 250m
+    ##   memory: 256Mi
+
+registry:
+  server:
+    resources:
+      limits: {}
+      ##   cpu: 500m
+      ##   memory: 1Gi
+      requests: {}
+      ##   cpu: 250m
+      ##   memory: 256Mi
+  controller:
+    resources:
+      limits: {}
+      ##   cpu: 500m
+      ##   memory: 1Gi
+      requests: {}
+      ##   cpu: 250m
+      ##   memory: 256Mi
+
+chartmuseum:
+  enabled: true
+  contextPath:
+  indexLimit:
+  chartPostFormFieldName:
+  provPostFormFieldName:
+  maxStorageObjects:
+  maxUploadSize:
+  storageTimestampTolerance: "1s"
+  resources:
+    limits: {}
+    #  cpu: 500m
+    #  memory: 1Gi
+    requests: {}
+    #  cpu: 250m
+    #  memory: 256Mi
+
+trivy:
+  enabled: true
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+notary:
+  enabled: true
+  server:
+    resources:
+      limits: {}
+      ##   cpu: 500m
+      ##   memory: 1Gi
+      requests: {}
+      ##   cpu: 250m
+      ##   memory: 256Mi
+  signer:
+    resources:
+      limits: {}
+      ##   cpu: 500m
+      ##   memory: 1Gi
+      requests: {}
+      ##   cpu: 250m
+      ##   memory: 256Mi
+
+redis:
+  enabled: true
+
+postgresql:
+  enabled: true
+  primary:
+    resourcesPreset: "small"

@@ -1,0 +1,5 @@
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+k apply -f ./local-pv.yaml
+k apply -f ./local-pvc.yaml
+helm install -n harbor harbor bitnami/harbor -f harbor.yaml --create-namespace
