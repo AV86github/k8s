@@ -3,3 +3,14 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 k apply -f ./local-pv.yaml
 k apply -f ./local-pvc.yaml
 helm install -n harbor harbor bitnami/harbor -f harbor.yaml --create-namespace
+
+insecure containerd:
+[plugins."io.containerd.grpc.v1.cri".registry]
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+          endpoint = ["https://registry-1.docker.io"]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."harbor.avl.home"]
+          endpoint = ["http://harbor.avl.home"]
+        [plugins."io.containerd.grpc.v1.cri".registry.configs]
+          [plugins."io.containerd.grpc.v1.cri".registry.configs."harbor.avl.home".tls]
+            insecure_skip_verify = true
